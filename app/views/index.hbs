@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta lang="zh">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta name="description" content="">
+  <meta name="keyword" content="">
+  <title>{{title}}</title>
+</head>
+<body>
+<h1>{{title}}</h1>
+<ul>
+  <li>
+    <label>请求方法</label>
+    <select>
+      <option value="get">GET</option>
+      <option value="post">POST</option>
+      <option value="put">PUT</option>
+      <option value="delete">DELETE</option>
+    </select></li>
+  <li>
+    <label>请求类型</label>
+    <select>
+      <option value="json">JSON</option>
+      <option value="form">FORM</option>
+    </select></li>
+  <li>
+    <label>URL</label>
+    <input type="text" placeholder="接口请求地址">
+  </li>
+  <li>
+    <label>header1</label>
+    <input type="text" placeholder="key">
+    <input type="text" placeholder="value">
+  </li>
+  <li>
+    <label>header2</label>
+    <input type="text" placeholder="key">
+    <input type="text" placeholder="value">
+  </li>
+  <li>
+    <label>参数1</label>
+    <select>
+      <option value="get">GET</option>
+      <option value="post">POST</option>
+    </select>
+    <input type="text" placeholder="key">
+    <input type="text" placeholder="value">
+  </li>
+  <li>
+    <label>参数2</label>
+    <select>
+      <option value="get">GET</option>
+      <option value="post">POST</option>
+    </select>
+    <input type="text" placeholder="key">
+    <input type="text" placeholder="value">
+  </li>
+</ul>
+<script src="/static/js/jquery.js"></script>
+</body>
+</html>
