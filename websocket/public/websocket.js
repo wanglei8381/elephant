@@ -1,6 +1,8 @@
 import Event from './event.js'
 
 const settings = {
+  url: null,
+  protocols: null,
   debug: false,
   // 实例化时直接创建连接，无须手动open
   automaticOpen: true,
@@ -27,21 +29,14 @@ class WebSocketIO extends Event {
       options = protocols
       protocols = null
     }
+    // 设置配置
+    this.setConfig(options)
 
     this.url = url
     // 可以是一个单个的协议名字字符串或者包含多个协议名字字符串的数组。这些字符串用来表示子协议，这样做可以让一个服务器实现多种WebSocket子协议
     this.protocols = protocols
     // 后端指定的子协议
     this.protocol = null
-    // 代理设置选项
-    for (let key in settings) {
-      if (typeof options[key] !== 'undefined') {
-        this[key] = options[key]
-      } else {
-        this[key] = settings[key]
-      }
-    }
-
     // websocket的实例
     this.io = null
     // 手动关闭
@@ -56,6 +51,17 @@ class WebSocketIO extends Event {
     // 自动打开连接
     if (this.automaticOpen === true) {
       this.open(false)
+    }
+  }
+
+  setConfig (options) {
+    // 代理设置选项
+    for (let key in settings) {
+      if (typeof options[key] !== 'undefined') {
+        this[key] = options[key]
+      } else if (this[key] == null) {
+        this[key] = settings[key]
+      }
     }
   }
 
@@ -141,7 +147,6 @@ class WebSocketIO extends Event {
       this.close('destroy')
     }
   }
-
 }
 
 function attachEvent (ws, io, reconnectAttempt) {

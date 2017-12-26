@@ -16,9 +16,8 @@
 </body>
 <script type="module">
 import WebSocketIO from './websocket.js'
-var ws = new WebSocketIO("ws://127.0.0.1:3000/socket.io", {
-  debug: true,
-  automaticReconnect: false
+var ws = new WebSocketIO("ws://127.0.0.1:3000/socket.io", ['chat', 'superchat'], {
+  debug: true
 });
 
 ws.write('hello', { id: 1 })
