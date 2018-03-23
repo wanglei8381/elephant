@@ -19,7 +19,7 @@ app.use(session({
 app.use(bodyParser());
 
 // 添加中间件
-middleware(app);
+// middleware(app);
 
 app.use(views(__dirname + '/views', { extension: 'hbs', map: { hbs: 'handlebars' } }));
 

@@ -21,7 +21,7 @@ export function RequestMapping (path, method = 'get') {
       stack.push({
         path,
         method,
-        controller: target[key]
+        controller: target[key].bind(target)
       })
       routerMap.set(target, stack)
     } else {

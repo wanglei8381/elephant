@@ -55,6 +55,7 @@ class WebSocketIO extends Event {
   }
 
   setConfig (options) {
+    if (!isPlainObject(options)) return
     // 代理设置选项
     for (let key in settings) {
       if (typeof options[key] !== 'undefined') {
@@ -63,6 +64,11 @@ class WebSocketIO extends Event {
         this[key] = settings[key]
       }
     }
+  }
+
+  start (options) {
+    this.setConfig(options)
+    this.open(false)
   }
 
   get readyState () {
@@ -114,15 +120,17 @@ class WebSocketIO extends Event {
     }
   }
 
-  // 写数据, 会缓存数据
+  // 写数据, 会缓存数据, 返回0：直接发送，大于0：缓存，-1：无效状态
   write (type, payload) {
     if (this.readyState === 1) {
-      return this.send(JSON.stringify({ type, payload }))
+      this.send(JSON.stringify({ type, payload }))
+      return 0
     } else if (this.active) {
       // 注意内存泄漏
       this.polls.push(JSON.stringify({ type, payload }))
       return this.polls.length
     }
+    return -1
   }
 
   flush () {

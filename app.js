@@ -1,4 +1,5 @@
 require('babel-core/register');
 require("babel-polyfill");
 
-require('./websocket/index')
+require('./experiment/index')
+// require('./app/index')
